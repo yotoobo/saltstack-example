@@ -1,0 +1,7 @@
+[ -f php-5.3.29.tar.gz ] || wget http://mirrors.sohu.com/php/php-5.3.29.tar.gz
+[ -f tengine-2.1.2.tar.gz ] || wget http://tengine.taobao.org/download/tengine-2.1.2.tar.gz
+[ -f memcached-1.4.25.tar.gz ] || wget http://www.memcached.org/files/memcached-1.4.25.tar.gz
+[ -f imagick-3.4.2.tgz ] || wget https://pecl.php.net/get/imagick-3.4.2.tgz
+[ -f redis-3.2.0.tar.gz ] || wget http://download.redis.io/releases/redis-3.2.0.tar.gz
+[ -f redis-2.2.7.tgz ] || wget https://pecl.php.net/get/redis-2.2.7.tgz
+[ -f memcache-3.0.8.tgz ] || wget https://pecl.php.net/get/memcache-3.0.8.tgz

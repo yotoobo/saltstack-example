@@ -1,0 +1,3 @@
+dev:
+  'salt.minion':
+    - apache

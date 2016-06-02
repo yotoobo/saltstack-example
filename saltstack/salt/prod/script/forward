@@ -1,0 +1,28 @@
+echo "starting forward..."
+if [ -e /proc/sys/net/ipv4/tcp_ecn ]
+then
+echo 0 > /proc/sys/net/ipv4/tcp_ecn
+fi
+echo 1 > /proc/sys/net/ipv4/tcp_syncookies
+/sbin/iptables -F
+/sbin/iptables -F -t nat
+/sbin/iptables -F -t raw
+/sbin/depmod -a
+/sbin/modprobe ip_tables
+/sbin/modprobe ip_conntrack
+/sbin/modprobe ip_nat_ftp
+/sbin/modprobe ip_conntrack_ftp
+/sbin/iptables -A INPUT -i lo -j ACCEPT
+/sbin/iptables -A INPUT -m state --state ESTABLISHED,RELATED,UNTRACKED -j ACCEPT
+/sbin/iptables -A INPUT -i eth1 -p udp -j REJECT --reject-with icmp-port-unreachable
+
+#raw
+/sbin/iptables -t raw -A PREROUTING -p tcp -m tcp --dport 80 -j NOTRACK
+/sbin/iptables -t raw -A OUTPUT -p tcp -m tcp --sport 80 -j NOTRACK
+/sbin/iptables -t raw -A PREROUTING -p tcp -m tcp --sport 80 -j NOTRACK
+/sbin/iptables -t raw -A OUTPUT -p tcp -m tcp --dport 80 -j NOTRACK
+
+#sshd
+/sbin/iptables -A INPUT -i eth0 -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
+
+/sbin/iptables -P INPUT DROP
