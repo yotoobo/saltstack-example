@@ -1,3 +1,6 @@
+include:
+  - php.install
+
 imagick-pkg-install:
   pkg.installed:
     - names:
@@ -16,3 +19,4 @@ php-ext-imagick:
     - require:
       - pkg: imagick-pkg-install
       - file: php-ext-imagick
+      - cmd: php-source-install
