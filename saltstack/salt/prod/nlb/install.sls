@@ -15,3 +15,9 @@ nginx-service:
     - reload: True
     - watch:
       - file: /usr/local/nginx/conf/nginx.conf
+
+/usr/local/nginx/conf/vhost:
+  file.recurse:
+    - source: salt://nlb/vhost
+    - dir_mode: 755
+    - file_mode: 744

@@ -30,6 +30,7 @@ php-source-install:
       - libxslt-devel
       - re2c
       - libtool-ltdl-devel
+      - mysql-community-devel
   cmd.run:
     - name: cd /usr/local/src/ && tar zxf php-5.3.29.tar.gz && cd php-5.3.29 && ./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --enable-fpm --enable-bcmath --enable-sockets --enable-shmop --enable-zip --enable-soap --enable-pcntl --enable-mbstring --with-gd --with-jpeg-dir --with-png-dir --enable-gd-native-ttf --with-freetype-dir --with-bz2 --with-xmlrpc --with-xsl --with-zlib --with-mhash --with-mcrypt --with-mysql --with-mysqli --with-curl --with-t1lib --with-gettext --with-openssl --disable-fileinfo && make && make install
     - unless: test -d /usr/local/php

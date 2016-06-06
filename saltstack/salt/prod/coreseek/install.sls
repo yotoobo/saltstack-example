@@ -1,10 +1,12 @@
 coreseek-mmseg-install:
   pkg.installed:
     - names:
+      - gcc
+      - gcc-c++
       - automake
       - autoconf
       - libtool
-      - mysql-devel
+      - mysql-community-devel
   file.managed:
     - name: /usr/local/src/coreseek-4.1-beta.tar.gz
     - source: salt://files/coreseek-4.1-beta.tar.gz
@@ -37,4 +39,3 @@ coreseek-source-install:
     - unless: test -d /usr/local/coreseek
     - require:
       - cmd: coreseek-mmseg-install
-      - cmd: libiconv-install
